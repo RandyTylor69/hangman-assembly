@@ -1,7 +1,47 @@
 *{
   margin: 0;
+  font-family: "alata", sans-serif;
+}
+
+body {
+  background-color: rgb(44, 44, 44);
 }
 
 header {
-  font-family: "alata", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: wheat;
+  max-width: 50vh;
+  margin: auto;
+  text-align: center;
+  margin-top: 10vh;
+}
+
+
+header > p {
+  color: rgb(149, 135, 109);
+  margin-top: 1vh;
+}
+
+.status {
+  background-color: rgb(93, 154, 93);
+  display: flex;
+  justify-content: center;
+  max-width: 30vh;
+  margin: auto;
+  margin-top: 2vh;
+  padding: 2vh 0;
+  border: 5px solid rgb(37, 118, 37);
+  text-align: center;
+  color: rgb(230, 230, 230);
+  font-size: 2.5vh;
+  flex-direction: column;
+  border-radius: 2vh;
+}
+
+.status > p {
+  font-size: 2vh;
+  color: rgb(203, 204, 205);
 }

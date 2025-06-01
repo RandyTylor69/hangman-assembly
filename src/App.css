@@ -45,3 +45,14 @@ header > p {
   font-size: 2vh;
   color: rgb(203, 204, 205);
 }
+
+.languages {
+  display: flex;
+  max-width: 35vh;
+  margin: auto;
+  margin-top: 2vh;
+  justify-content: center;
+  gap: 3px;
+  align-items: center;
+  flex-wrap: wrap;
+}

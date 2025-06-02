@@ -13,7 +13,7 @@ header {
   justify-content: center;
   flex-direction: column;
   color: wheat;
-  max-width: 50vh;
+  max-width: 95vh;
   margin: auto;
   text-align: center;
   margin-top: 10vh;
@@ -48,11 +48,64 @@ header > p {
 
 .languages {
   display: flex;
-  max-width: 35vh;
+  width:60vh;
   margin: auto;
   margin-top: 2vh;
   justify-content: center;
   gap: 3px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 40vh;
+  height: 5vh;
+  margin: auto;
+  margin-top: 4vh;
+  
+}
+
+main > span{
+  color: rgb(233, 233, 233);
+  background-color: rgb(74, 74, 74);
+  border-bottom: 1px solid white;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 65vh;
+  height: 20vh;
+  margin: auto;
+  gap: 1vh;
+  margin-top: 4vh;
+  flex-wrap: wrap;
+}
+
+section > button{
+  height: 36px;
+  width: 36px;
+  color: white;
+  background-color: rgb(154, 154, 154);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.keyboardColorGreen{
+  background-color: green;
+}
+
+.keyboardColorRed{
+  background-color: red;
 }

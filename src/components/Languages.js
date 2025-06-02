@@ -11,10 +11,10 @@ export default function Languages() {
         <div
             style={{
                 backgroundColor:lingo.backgroundColor, 
-                borderRadius:"10px", 
+                borderRadius:"6px", 
                 color:lingo.color,
-                width:"10vh",
-                height:"2vh",
+                minWidth:"10vh",
+                minpHeight:"3vh",
                 textAlign:"center"
                 }}>
             {lingo.name}

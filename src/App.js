@@ -6,8 +6,6 @@ import Languages from "./components/Languages";
 import Word from "./components/Word";
 import Keyboard from "./components/Keyboard";
 
-import clsx from "clsx";
-
 function App() {
   // 1. Selecting the word to be guessed
   const [currentWord, setCurrentWord] = React.useState("react");

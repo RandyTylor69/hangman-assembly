@@ -1,5 +1,3 @@
-import clsx from "clsx"
-
 export default function Keyboard(props){
 
     const alphabet = "abcdefghijklmnopqrstuvwxyz".split("")

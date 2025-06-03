@@ -12,7 +12,7 @@ function App() {
   const [correctTries, setCorrestTries] = React.useState(0);
 
   // 2. Storing the word to be guessed
-  const [correctWord, setcorrectWord] = React.useState("bordeaux");
+  const [correctWord, setcorrectWord] = React.useState("react");
   const correctWordArray = correctWord.split("");
 
   const guessLetter = (letter) => {
@@ -24,6 +24,8 @@ function App() {
     setCorrestTries((prevNum)=>
       correctWordArray.includes(letter) ? prevNum+1 : prevNum
     )
+
+    
   };
 
   // 3. Display the guessed letters
@@ -31,26 +33,27 @@ function App() {
     <span>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</span>
   ));
 
-  // an number that stores the wrong guesses, derived from the two states
+  // the number of wrong guesses, derived from the two states
   const wrongGuessCount = guessedLetters.filter(
     (letter) => !correctWordArray.includes(letter)
   ).length;
 
   // the "isGameOver" variable that evaluates to 'true' if the user has used
   // all their available guesses
-  const isGameOver = wrongGuessCount === correctWordArray.length ? true : false;
+  const isGameOver = wrongGuessCount === 8 ? true : false;
 
-  // update the correct tries
-
+  const isGameWon = correctTries === correctWordArray.length ? true: false
 
   // ---------- console log tests -----------------//
-
-  console.log(correctTries)
   
+  console.log(isGameWon)
+
   return (
     <>
       <Header />
-      <Status isGameOver={isGameOver} correctTries={correctTries} />
+      <Status isGameOver={isGameOver} 
+      isGameWon={isGameWon}
+      />
       <Languages wrongGuessCount={wrongGuessCount} />
       <Word wordMapped={wordMapped} />
       <Keyboard guessLetter={guessLetter} word={correctWordArray} />

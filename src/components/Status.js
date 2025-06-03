@@ -1,18 +1,28 @@
 import clsx from "clsx"
+import React from "react"
+import { getFarewellText } from "../utils";
 
 export default function Status(props){
-    const gameWon = props.correctTries === 8? true : false;
+    
+    // farewell messages
+
     return(
         // conditionally render
-            props.isGameOver &&
+            props.isGameOver || props.isGameWon &&
 
-        <div className={clsx("status", !gameWon && "status-lost-addon")}>
+        <div className={clsx("status", props.isGameWon ? "status-won-addon" : "status-lost-addon")}>
             
-            <span> {gameWon? "You won" : "You lost"}</span>
+            <span> {props.isGameWon? "You won" : "You lost"}</span>
             <p>
-                {gameWon? "Congratulations!" : "gg lil bro time to learn Assembly for the rest of eternity💀"}
+                {props.isGameWon? "Congratulations!" : "gg lil bro time to learn Assembly for the rest of eternity💀"}
             </p>
         </div>  
+
+        //:
+
+        //<div className="status">
+        //    <span>{msg}</span>
+        //</div>
         
     )
 }

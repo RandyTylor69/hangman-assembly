@@ -1,9 +1,12 @@
-*{
+* {
   margin: 0;
   font-family: "alata", sans-serif;
 }
 
+html,
 body {
+  margin: 0;
+  height: 100%;
   background-color: rgb(44, 44, 44);
 }
 
@@ -13,12 +16,10 @@ header {
   justify-content: center;
   flex-direction: column;
   color: wheat;
-  max-width: 95vh;
+  max-width: 80vh;
   margin: auto;
   text-align: center;
-  margin-top: 10vh;
 }
-
 
 header > p {
   color: rgb(149, 135, 109);
@@ -41,6 +42,11 @@ header > p {
   border-radius: 2vh;
 }
 
+.status-lost-addon {
+  background-color: rgb(103, 40, 40);
+  border: 5px solid rgb(40, 6, 6);
+}
+
 .status > p {
   font-size: 2vh;
   color: rgb(203, 204, 205);
@@ -48,7 +54,7 @@ header > p {
 
 .languages {
   display: flex;
-  width:60vh;
+  width: 60vh;
   margin: auto;
   margin-top: 2vh;
   justify-content: center;
@@ -65,13 +71,12 @@ main {
   height: 5vh;
   margin: auto;
   margin-top: 4vh;
-  
 }
 
-main > span{
+main > span {
   color: rgb(233, 233, 233);
   background-color: rgb(74, 74, 74);
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
   height: 30px;
   width: 30px;
   display: flex;
@@ -91,7 +96,7 @@ section {
   flex-wrap: wrap;
 }
 
-section > button{
+section > button {
   height: 36px;
   width: 36px;
   color: white;
@@ -101,11 +106,14 @@ section > button{
   cursor: pointer;
 }
 
-
-.keyboardColorGreen{
-  background-color: green;
+.keyboardColorGreen {
+  background-color: rgb(123, 198, 123);
 }
 
-.keyboardColorRed{
-  background-color: red;
+.keyboardColorRed {
+  background-color: rgb(97, 25, 25);
+}
+
+.crossed-out {
+  opacity: 0.1;
 }

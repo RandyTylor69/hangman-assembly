@@ -7,31 +7,53 @@ import Word from "./components/Word";
 import Keyboard from "./components/Keyboard";
 
 function App() {
-  // 1. Selecting the word to be guessed
-  const [currentWord, setCurrentWord] = React.useState("react");
-  const currentWordArray = currentWord.split("");
-  const wordMapped = currentWordArray.map((letter) => (
-    <span>{letter.toUpperCase()}</span>
-  ));
-
-  // 2. Storing guessed letters in state
+  // 1. Storing guessed letters in state
   const [guessedLetters, setGuessedLetters] = React.useState([]);
+  const [correctTries, setCorrestTries] = React.useState(0);
+
+  // 2. Storing the word to be guessed
+  const [correctWord, setcorrectWord] = React.useState("bordeaux");
+  const correctWordArray = correctWord.split("");
+
   const guessLetter = (letter) => {
-    // update the guessed-letter array
-    let isRight = currentWordArray.includes(letter)? true : false;
+    // 1.1 add the letter to the guessed words array
     setGuessedLetters((prevArray) =>
       prevArray.includes(letter) ? prevArray : [...prevArray, letter]
     );
-
+    // 1.2 update the correct guesses
+    setCorrestTries((prevNum)=>
+      correctWordArray.includes(letter) ? prevNum+1 : prevNum
+    )
   };
 
+  // 3. Display the guessed letters
+  const wordMapped = correctWordArray.map((letter) => (
+    <span>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</span>
+  ));
+
+  // an number that stores the wrong guesses, derived from the two states
+  const wrongGuessCount = guessedLetters.filter(
+    (letter) => !correctWordArray.includes(letter)
+  ).length;
+
+  // the "isGameOver" variable that evaluates to 'true' if the user has used
+  // all their available guesses
+  const isGameOver = wrongGuessCount === correctWordArray.length ? true : false;
+
+  // update the correct tries
+
+
+  // ---------- console log tests -----------------//
+
+  console.log(correctTries)
+  
   return (
     <>
       <Header />
-      <Status />
-      <Languages />
-      <Word wordMapped = {wordMapped}/>
-      <Keyboard guessLetter={guessLetter} word = {currentWordArray}/>
+      <Status isGameOver={isGameOver} correctTries={correctTries} />
+      <Languages wrongGuessCount={wrongGuessCount} />
+      <Word wordMapped={wordMapped} />
+      <Keyboard guessLetter={guessLetter} word={correctWordArray} />
     </>
   );
 }

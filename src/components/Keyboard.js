@@ -4,6 +4,8 @@ export default function Keyboard(props){
     const keyboard = alphabet.map(letter => (
         <button onClick={(e)=>{
             props.guessLetter(letter);
+
+            // keyboard letter styles, if it's in the current word
             e.target.classList.add(
                 props.word.includes(letter) ? 
                 "keyboardColorGreen" : "keyboardColorRed"

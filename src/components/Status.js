@@ -5,10 +5,15 @@ import { getFarewellText } from "../utils";
 export default function Status(props){
     
     // farewell messages
+    const[msg, setMsg] = React.useState("")
+
+    React.useEffect(()=>{
+        setMsg(prevMsg => getFarewellText(props.waitingLang))
+    },[props.wrongGuessCount])
 
     return(
         // conditionally render
-            props.isGameOver || props.isGameWon &&
+            props.isGameOver || props.isGameWon ?
 
         <div className={clsx("status", props.isGameWon ? "status-won-addon" : "status-lost-addon")}>
             
@@ -18,11 +23,11 @@ export default function Status(props){
             </p>
         </div>  
 
-        //:
-
-        //<div className="status">
-        //    <span>{msg}</span>
-        //</div>
+        :
+        props.gameBegins && 
+        <div className="status">
+            <span>{msg}</span>
+        </div>
         
     )
 }

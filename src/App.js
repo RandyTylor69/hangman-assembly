@@ -1,15 +1,21 @@
 import "./App.css";
+import clsx from "clsx";
+import { langOptions } from "./langOptions";
 import React from "react";
 import Header from "./components/Header";
 import Status from "./components/Status";
 import Languages from "./components/Languages";
 import Word from "./components/Word";
 import Keyboard from "./components/Keyboard";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 function App() {
   // 1. Storing guessed letters in state
+  // (waitingLang = the language waiting to be removed upon a wrong guess)
   const [guessedLetters, setGuessedLetters] = React.useState([]);
   const [correctTries, setCorrestTries] = React.useState(0);
+  const [waitingLang, setWaitingLang] = React.useState("");
+  const [gameBegins, setGameBegins] = React.useState(false)
 
   // 2. Storing the word to be guessed
   const [correctWord, setcorrectWord] = React.useState("react");
@@ -24,8 +30,11 @@ function App() {
     setCorrestTries((prevNum)=>
       correctWordArray.includes(letter) ? prevNum+1 : prevNum
     )
+    // 1.3 update the language waiting to be removed
+    setWaitingLang(langOptions[wrongGuessCount].name)
 
-    
+    // 1.4 update gameStart
+    setGameBegins(true);
   };
 
   // 3. Display the guessed letters
@@ -44,6 +53,34 @@ function App() {
 
   const isGameWon = correctTries === correctWordArray.length ? true: false
 
+  // ---------------language chips section -----------------------//
+  // state: language chips
+    const [languageChips, setLanguageChips] = React.useState(langOptions);
+  
+    // mapping the state onto the page
+    const languages = languageChips.map((lingo, index) => {
+      const className = clsx({
+        "crossed-out": wrongGuessCount > index
+      });
+  
+      return (
+        <div
+          key={index}
+          style={{
+            backgroundColor: lingo.backgroundColor,
+            borderRadius: "6px",
+            color: lingo.color,
+            minWidth: "10vh",
+            minpHeight: "3vh",
+            textAlign: "center",
+          }}
+          className={className}
+        >
+          {lingo.name}
+        </div>
+      );
+    });
+
   // ---------- console log tests -----------------//
   
   console.log(isGameWon)
@@ -53,8 +90,11 @@ function App() {
       <Header />
       <Status isGameOver={isGameOver} 
       isGameWon={isGameWon}
+      wrongGuessCount = {wrongGuessCount}
+      waitingLang = {waitingLang}
+      gameBegins = {gameBegins}
       />
-      <Languages wrongGuessCount={wrongGuessCount} />
+      <Languages languages = {languages} />
       <Word wordMapped={wordMapped} />
       <Keyboard guessLetter={guessLetter} word={correctWordArray} />
     </>

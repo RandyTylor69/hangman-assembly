@@ -7,7 +7,7 @@ import Status from "./components/Status";
 import Languages from "./components/Languages";
 import Word from "./components/Word";
 import Keyboard from "./components/Keyboard";
-import { wait } from "@testing-library/user-event/dist/utils";
+import { getRandomWord } from "./utils";
 
 function App() {
   // 1. Storing guessed letters in state
@@ -18,7 +18,7 @@ function App() {
   const [gameBegins, setGameBegins] = React.useState(false)
 
   // 2. Storing the word to be guessed
-  const [correctWord, setcorrectWord] = React.useState("react");
+  const [correctWord, setcorrectWord] = React.useState(getRandomWord());
   const correctWordArray = correctWord.split("");
 
   const guessLetter = (letter) => {
@@ -37,11 +37,7 @@ function App() {
     setGameBegins(true);
   };
 
-  // 3. Display the guessed letters
-  const wordMapped = correctWordArray.map((letter) => (
-    <span>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</span>
-  ));
-
+  
   // the number of wrong guesses, derived from the two states
   const wrongGuessCount = guessedLetters.filter(
     (letter) => !correctWordArray.includes(letter)
@@ -50,6 +46,14 @@ function App() {
   // the "isGameOver" variable that evaluates to 'true' if the user has used
   // all their available guesses
   const isGameOver = wrongGuessCount === 8 ? true : false;
+
+  // 3. Display the guessed letters
+  const wordMapped = correctWordArray.map((letter) => (
+    isGameOver?
+    <span style={{color:"red"}}>{letter}</span> : // if the game is lost, display all letters
+    <span>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</span> // else, display current guessed letters
+  ));
+
 
   const isGameWon = correctTries === correctWordArray.length ? true: false
 
